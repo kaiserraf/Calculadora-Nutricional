@@ -1,0 +1,15 @@
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\bin\Debug\net10.0\Caculadora Nutricional.exe
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\bin\Debug\net10.0\Caculadora Nutricional.deps.json
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\bin\Debug\net10.0\Caculadora Nutricional.runtimeconfig.json
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\bin\Debug\net10.0\Caculadora Nutricional.dll
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\bin\Debug\net10.0\Caculadora Nutricional.pdb
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.AssemblyInfoInputs.cache
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.AssemblyInfo.cs
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.csproj.CoreCompileInputs.cache
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.sourcelink.json
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.dll
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\refint\Caculadora Nutricional.dll
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.pdb
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\Caculadora Nutricional.genruntimeconfig.cache
+C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Caculadora Nutricional\obj\Debug\net10.0\ref\Caculadora Nutricional.dll
