@@ -31,6 +31,7 @@ namespace calcnutri
         */
 
         // informações principais para cadastro
+
         public static Dictionary<int, String> idNome = new Dictionary<int, string>(); // Id - Nome
         public static Dictionary<int, float> idPeso = new Dictionary<int, float>(); // Id - Peso
         public static Dictionary<int, int> idIdade = new Dictionary<int, int>(); // Id - Idade
@@ -38,6 +39,7 @@ namespace calcnutri
         public static Dictionary<int, char> idGenero = new Dictionary<int, char>(); // Id - Genero
 
         // informações preenchidas conforme ocorre consultas
+
         public static Dictionary<int, String> idKcal = new Dictionary<int, string>(); // Id - kcal
         public static Dictionary<int, String> idPtn = new Dictionary<int, string>(); // Id - PTN
         public static Dictionary<int, String> idLip = new Dictionary<int, string>(); // Id - LIP
@@ -47,10 +49,19 @@ namespace calcnutri
         public static Dictionary<int, String> idFaf = new Dictionary<int, string>(); // Id - FAF
         public static Dictionary<int, String> idGet = new Dictionary<int, string>(); // Id - GET
 
+        public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
+
         // metodos para manipulação de arquivos
         public static void ArmazenarDados() // metodo coringa (sempre usado)
         {
-
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         public static void CarregarDados() // metodo coringa (sempre usado)
@@ -63,9 +74,9 @@ namespace calcnutri
 
         }
 
-        public static void CriarDados()
+        public static void CriarArquivo()
         {
-
+            
         }
 
         public static void DeletarDados()
@@ -107,9 +118,11 @@ namespace calcnutri
             altura = int.Parse(Console.ReadLine());
             idAltura.Add(id, altura);
 
-            Console.WriteLine("Genero(H/M): "); // Genero
+            Console.WriteLine("Genero:(H/M): "); // Genero
             genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
             idGenero.Add(id, genero);
+
+            CriarArquivo();
 
         }
 
@@ -139,3 +152,22 @@ namespace calcnutri
         }
     }
 }
+
+/*
+  - contar calorias
+ - calculo de gastos caloricos com base (obseso, falso magro, hipertrofia, superafit)
+ - equação Harris-Benedicti (taxa metabólica - MTB)
+	HOMENS:
+	TMB = 88.36 + (13.4 * pesoKg) + (4.8 * alturaCm) - (5.7 * idadeAnos)
+
+	MULHERES:
+	TMB = 447.6 + (9.2 * pesoKg) + (3.1 * alturaCm) - (4.3 * idadeAnos)
+ - após calcular o TMB, se calcula o Fator de Atividade Física (FAF)
+	GET(Gasto Energetico Total) = TMB * FAF
+
+======================================================================================
+
+- quantidade ideal de gordura (LIP), proteina (PTN) e carbohidratos (CHO)
+- fazer arquivo com nome, idade, altura, peso, tmb, faf e get do paciente + medições + ver % de gordura por dobras (calc 3, 5 e 7 dobras)
+- criar historico de consultas, mostrando sua evolução
+*/
