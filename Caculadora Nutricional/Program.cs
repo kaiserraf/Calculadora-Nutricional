@@ -28,8 +28,31 @@ namespace calcnutri
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
 
         // metodos para manipulação de arquivos
-        public static void ArmazenarDados(string nome, int id, int idade, int altura, float peso, char genero) // metodo coringa (sempre usado)
+        public static void ArmazenarDados() // metodo coringa (sempre usado)
         {
+            try
+            {
+                // da certo porem não do jeito que eu quero
+                /*
+                var linhas1 = idNome.Select(par => $"{par.Key};{par.Value}");
+                var linhas2 = idPeso.Select(par => $"{par.Key};{par.Value}");
+                var linhas3 = idIdade.Select(par => $"{par.Key};{par.Value}");
+                var linhas4 = idAltura.Select(par => $"{par.Key};{par.Value}");
+                var linhas5 = idGenero.Select(par => $"{par.Key};{par.Value}");
+
+                File.WriteAllLines(arquivoSaida, linhas1);
+                File.AppendAllLines(arquivoSaida, linhas2);
+                File.AppendAllLines(arquivoSaida, linhas3);
+                File.AppendAllLines(arquivoSaida, linhas4);
+                File.AppendAllLines(arquivoSaida, linhas5);
+                */
+                // não dá certo concatenar
+
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             
         }
 
@@ -43,10 +66,6 @@ namespace calcnutri
 
         }
 
-        public static void CriarArquivo()
-        {
-            
-        }
 
         public static void DeletarDados()
         {
@@ -91,7 +110,7 @@ namespace calcnutri
             genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
             idGenero.Add(id, genero);
 
-            CriarArquivo();
+            ArmazenarDados();
 
         }
 
