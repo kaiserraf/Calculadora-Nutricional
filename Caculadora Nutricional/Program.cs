@@ -10,7 +10,6 @@ namespace calcnutri
     /// </summary>
     class Program
     {
-
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
 
         // metodos para manipulação de arquivos
@@ -38,7 +37,7 @@ namespace calcnutri
 
         public static void CriarArquivo()
         {
-            File.Create(arquivoSaida); // cria arquivo com o caminho dado
+            
         }
 
         public static void DeletarDados()
@@ -127,9 +126,7 @@ namespace calcnutri
 - quantidade ideal de gordura (LIP), proteina (PTN) e carbohidratos (CHO)
 - fazer arquivo com nome, idade, altura, peso, tmb, faf e get do paciente + medições + ver % de gordura por dobras (calc 3, 5 e 7 dobras)
 - criar historico de consultas, mostrando sua evolução
-*/
 
-/*
          #  INFORMAÇÕES DO PACIENTE
          # 
          #  nome - String
@@ -146,4 +143,4 @@ namespace calcnutri
          #  FAF - Float
          #  GET - Float
          #
-        */
+*/
