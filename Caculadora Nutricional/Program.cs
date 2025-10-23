@@ -48,6 +48,11 @@ namespace calcnutri
                 */
                 // não dá certo concatenar
 
+                // para amanha:
+                // - verificar se é possivel criar um Dictionary com mais de dois elementos ou se tem algum outro meio de fazer isso
+                // - implementar no código
+                // - armazenar no arquivo
+
 
             }catch(Exception ex)
             {
