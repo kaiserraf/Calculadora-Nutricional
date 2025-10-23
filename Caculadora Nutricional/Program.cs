@@ -10,19 +10,27 @@ namespace calcnutri
     /// </summary>
     class Program
     {
+
+        // informações para cadastro
+        public static Dictionary<int, String> idNome = new Dictionary<int, string>(); // Id - Nome
+        public static Dictionary<int, float> idPeso = new Dictionary<int, float>(); // Id - Peso
+        public static Dictionary<int, int> idIdade = new Dictionary<int, int>(); // Id - Idade
+        public static Dictionary<int, float> idAltura = new Dictionary<int, float>(); // Id - Altura
+        public static Dictionary<int, char> idGenero = new Dictionary<int, char>(); // Id - Genero
+
+        // informações adicionadas mais tarde
+        public static Dictionary<int, String> idKcal = new Dictionary<int, string>(); // Id - kcal
+        public static Dictionary<int, String> idPtn = new Dictionary<int, string>(); // Id - PTN
+        public static Dictionary<int, String> idLip = new Dictionary<int, string>(); // Id - LIP
+        public static Dictionary<int, String> idFaf = new Dictionary<int, string>(); // Id - FAF
+        public static Dictionary<int, String> idGet = new Dictionary<int, string>(); // Id - GET
+
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
 
         // metodos para manipulação de arquivos
         public static void ArmazenarDados(string nome, int id, int idade, int altura, float peso, char genero) // metodo coringa (sempre usado)
         {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+            
         }
 
         public static void CarregarDados() // metodo coringa (sempre usado)
@@ -65,18 +73,23 @@ namespace calcnutri
             id = int.Parse(Console.ReadLine());
             Console.WriteLine("Nome: "); // Nome
             nome = Console.ReadLine();
+            idNome.Add(id, nome);
 
             Console.WriteLine("Peso(Kg): "); // Peso
             peso = float.Parse(Console.ReadLine());
+            idPeso.Add(id, peso);
 
             Console.WriteLine("Idade(Anos): "); // Idade
             idade = int.Parse(Console.ReadLine());
+            idIdade.Add(id, idade);
 
             Console.WriteLine("Altura(cm): "); // Altura
             altura = int.Parse(Console.ReadLine());
+            idAltura.Add(id, altura);
 
             Console.WriteLine("Genero:(H/M): "); // Genero
             genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
+            idGenero.Add(id, genero);
 
             CriarArquivo();
 
