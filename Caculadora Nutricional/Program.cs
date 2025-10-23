@@ -38,7 +38,7 @@ namespace calcnutri
 
         public static void CriarArquivo()
         {
-            
+            File.Create(arquivoSaida); // cria arquivo com o caminho dado
         }
 
         public static void DeletarDados()
