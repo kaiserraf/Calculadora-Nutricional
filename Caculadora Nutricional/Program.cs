@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Reflection.PortableExecutable;
 using System.Runtime.Intrinsics.X86;
 namespace calcnutri
@@ -10,21 +11,6 @@ namespace calcnutri
     /// </summary>
     class Program
     {
-
-        // informações para cadastro
-        public static Dictionary<int, String> idNome = new Dictionary<int, string>(); // Id - Nome
-        public static Dictionary<int, float> idPeso = new Dictionary<int, float>(); // Id - Peso
-        public static Dictionary<int, int> idIdade = new Dictionary<int, int>(); // Id - Idade
-        public static Dictionary<int, float> idAltura = new Dictionary<int, float>(); // Id - Altura
-        public static Dictionary<int, char> idGenero = new Dictionary<int, char>(); // Id - Genero
-
-        // informações adicionadas mais tarde
-        public static Dictionary<int, String> idKcal = new Dictionary<int, string>(); // Id - kcal
-        public static Dictionary<int, String> idPtn = new Dictionary<int, string>(); // Id - PTN
-        public static Dictionary<int, String> idLip = new Dictionary<int, string>(); // Id - LIP
-        public static Dictionary<int, String> idFaf = new Dictionary<int, string>(); // Id - FAF
-        public static Dictionary<int, String> idGet = new Dictionary<int, string>(); // Id - GET
-
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
 
         // metodos para manipulação de arquivos
@@ -32,28 +18,7 @@ namespace calcnutri
         {
             try
             {
-                // da certo porem não do jeito que eu quero
-                /*
-                var linhas1 = idNome.Select(par => $"{par.Key};{par.Value}");
-                var linhas2 = idPeso.Select(par => $"{par.Key};{par.Value}");
-                var linhas3 = idIdade.Select(par => $"{par.Key};{par.Value}");
-                var linhas4 = idAltura.Select(par => $"{par.Key};{par.Value}");
-                var linhas5 = idGenero.Select(par => $"{par.Key};{par.Value}");
-
-                File.WriteAllLines(arquivoSaida, linhas1);
-                File.AppendAllLines(arquivoSaida, linhas2);
-                File.AppendAllLines(arquivoSaida, linhas3);
-                File.AppendAllLines(arquivoSaida, linhas4);
-                File.AppendAllLines(arquivoSaida, linhas5);
-                */
-                // não dá certo concatenar
-
-                // para amanha:
-                // - verificar se é possivel criar um Dictionary com mais de dois elementos ou se tem algum outro meio de fazer isso
-                // - implementar no código
-                // - armazenar no arquivo
-
-
+                
             }catch(Exception ex)
             {
                 Console.WriteLine(ex);
@@ -86,34 +51,30 @@ namespace calcnutri
         public static void Cadastro()
         {
             // variaveis do cadastro
-            string nome;
-            float peso;
-            int idade, altura, id;
-            char genero;
+            // string nome;
+            //float peso;
+            //int idade, altura, id;
+            //char genero;
+            Paciente pacienteNovo = new Paciente();
 
             Console.WriteLine("Cadastro");
 
             Console.WriteLine("ID: "); // ID
-            id = int.Parse(Console.ReadLine());
+            pacienteNovo.Id = int.Parse(Console.ReadLine());
             Console.WriteLine("Nome: "); // Nome
-            nome = Console.ReadLine();
-            idNome.Add(id, nome);
+            pacienteNovo.Nome = Console.ReadLine();
 
             Console.WriteLine("Peso(Kg): "); // Peso
-            peso = float.Parse(Console.ReadLine());
-            idPeso.Add(id, peso);
+            pacienteNovo.Peso = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Idade(Anos): "); // Idade
-            idade = int.Parse(Console.ReadLine());
-            idIdade.Add(id, idade);
+            pacienteNovo.Idade = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Altura(cm): "); // Altura
-            altura = int.Parse(Console.ReadLine());
-            idAltura.Add(id, altura);
+            pacienteNovo.Altura = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Genero:(H/M): "); // Genero
-            genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
-            idGenero.Add(id, genero);
+            pacienteNovo.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
             ArmazenarDados();
 
@@ -179,5 +140,5 @@ namespace calcnutri
          #  %BF - Float
          #  FAF - Float
          #  GET - Float
-         #
+         
 */
