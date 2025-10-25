@@ -12,6 +12,7 @@ namespace calcnutri
     class Program
     {
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
+        public static Paciente Cliente = new Paciente();
 
         // metodos para manipulação de arquivos
         public static void ArmazenarDados() // metodo coringa (sempre usado)
@@ -50,31 +51,26 @@ namespace calcnutri
         // cadastro de novo paciente
         public static void Cadastro()
         {
-            // variaveis do cadastro
-            // string nome;
-            //float peso;
-            //int idade, altura, id;
-            //char genero;
-            Paciente pacienteNovo = new Paciente();
 
             Console.WriteLine("Cadastro");
 
             Console.WriteLine("ID: "); // ID
-            pacienteNovo.Id = int.Parse(Console.ReadLine());
+            Cliente.Id = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Nome: "); // Nome
-            pacienteNovo.Nome = Console.ReadLine();
+            Cliente.Nome = Console.ReadLine();
 
             Console.WriteLine("Peso(Kg): "); // Peso
-            pacienteNovo.Peso = float.Parse(Console.ReadLine());
+            Cliente.Peso = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Idade(Anos): "); // Idade
-            pacienteNovo.Idade = int.Parse(Console.ReadLine());
+            Cliente.Idade = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Altura(cm): "); // Altura
-            pacienteNovo.Altura = int.Parse(Console.ReadLine());
+            Cliente.Altura = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Genero:(H/M): "); // Genero
-            pacienteNovo.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
+            Console.WriteLine("Genero:(H/M): "); // Genero >>>>>>
+            Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
             ArmazenarDados();
 
