@@ -21,7 +21,7 @@ class Paciente
     public int Idade
     {
         get { return _idade; }
-        set { _peso = value; }
+        set { _idade = value; }
     }
 
     private int _altura;
@@ -92,5 +92,12 @@ class Paciente
     {
         get { return _get; }
         set { _get = value; }
+    }
+
+    private float _taxaBasal;
+    public float TaxaBasal
+    {
+        get { return _taxaBasal; }
+        set { _taxaBasal = value; }
     }
 }

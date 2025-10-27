@@ -62,25 +62,34 @@ namespace calcnutri
 
             Console.WriteLine("Cadastro");
 
-            Console.WriteLine("ID: "); // ID
+            Console.Write("ID: "); // ID
             Cliente.Id = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Nome: "); // Nome
+            Console.Write("Nome: "); // Nome
             Cliente.Nome = Console.ReadLine();
 
-            Console.WriteLine("Peso(Kg): "); // Peso
+            Console.Write("Peso(Kg): "); // Peso
             Cliente.Peso = float.Parse(Console.ReadLine());
 
-            Console.WriteLine("Idade(Anos): "); // Idade
+            Console.Write("Idade(Anos): "); // Idade
             Cliente.Idade = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Altura(cm): "); // Altura
+            Console.Write("Altura(cm): "); // Altura
             Cliente.Altura = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Genero:(H/M): "); // Genero >>>>>>
+            Console.Write("Genero:(H/M): "); // Genero >>>>>>
             Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
-            ArmazenarDados();
+            TaxaMetabolicaChamada();
+            
+            /*
+            Console.WriteLine($"Id: {Cliente.Id}");
+            Console.WriteLine($"Nome: {Cliente.Nome}");
+            Console.WriteLine($"Peso: {Cliente.Peso}");
+            Console.WriteLine($"Idade: {Cliente.Idade}");
+            Console.WriteLine($"Altura: {Cliente.Altura}");
+            Console.WriteLine($"Genero: {Cliente.Genero}");
+            */
 
         }
 
@@ -137,7 +146,20 @@ namespace calcnutri
         // Calculo Taxa Metabolica Basal
         public static void TmbHomem()
         {
+            float tmbH = (float)(88.36 + 13.4 * Cliente.Peso + 4.8 * Cliente.Altura - 5.7 * Cliente.Idade);
+            Cliente.TaxaBasal = tmbH;
 
+            Console.Write("Digite o FAF do paciente: ");
+            Cliente.Faf = float.Parse(Console.ReadLine());
+
+            Cliente.Get = tmbH * Cliente.Faf;
+
+            Console.WriteLine($"Idade: {Cliente.Idade}");
+            Console.WriteLine($"Altura: {Cliente.Altura}");
+            Console.WriteLine($"Peso: {Cliente.Peso}");
+            Console.WriteLine($"TMB: {Cliente.TaxaBasal}");
+            Console.WriteLine($"Get: {Cliente.Get}");
+            Console.WriteLine($"Faf: {Cliente.Faf}");
         }
 
         public static void TmbMulher()
