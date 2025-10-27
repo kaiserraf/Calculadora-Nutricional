@@ -2,6 +2,10 @@
 using System.Dynamic;
 using System.Reflection.PortableExecutable;
 using System.Runtime.Intrinsics.X86;
+using System.IO;
+using System.Text;
+using System.Diagnostics;
+using System.Buffers.Text;
 namespace calcnutri
 {
     /// <summary>
@@ -19,8 +23,12 @@ namespace calcnutri
         {
             try
             {
-                
-            }catch(Exception ex)
+
+                var linhas = Cliente;
+
+
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -76,7 +84,15 @@ namespace calcnutri
 
         }
 
-        // menu de opções (Distribuição de Macro -  %BF - TMB)
+        // paciente antigo
+        public static void PacienteAntigo()
+        {
+            MostrarDados();
+            Console.Write("Digite a ID do paciente: ");
+            int idEscolha = int.Parse(Console.ReadLine());
+        }
+
+        // menu de opções (Novo paciente | paciente antigo)
         public static void MenuOpcoes(string nome, float peso, int idade, int altura, int id, char genero)
         {
             Console.WriteLine("Bem vindo | escolha uma opção | 1 - novo paciente | 2 - paciente antigo");
@@ -92,6 +108,113 @@ namespace calcnutri
                 case 2: // alterações paciente antigo
                     Console.Clear();
                     break;
+            }
+        }
+
+        // menu opções (Distribuição de Macro -  %BF - TMB)
+        public static void MenuCalculos()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("   CALCULADORA NUTRICIONAL  ");
+            Console.WriteLine("============================");
+
+            Console.WriteLine("1 - TMB || 2 - Dist Macro || 3 - %BF");
+
+            Console.Write("Digite uma opção: ");
+            int optnCalc = int.Parse(Console.ReadLine());
+
+            switch (optnCalc)
+            {
+                case 1: TaxaMetabolicaChamada(); break;
+                case 2: DistMacroChamada(); break;
+                case 3: PorcentGordChamada(); break;
+                default: break;
+            }
+
+        }
+
+
+        // Calculo Taxa Metabolica Basal
+        public static void TmbHomem()
+        {
+
+        }
+
+        public static void TmbMulher()
+        {
+
+        }
+
+        // %BF
+        public static void PorcentHomem()
+        {
+
+        }
+        public static void PorcentMulher()
+        {
+
+        }
+
+        // distribuição de macro-nutrientes
+        public static void DistHipertrofia()
+        {
+
+        }
+        public static void DistObeso()
+        {
+
+        }
+        public static void DistFalsoMagro()
+        {
+
+        }
+        public static void DistManutencao()
+        {
+
+        }
+
+        // funções de chamada para calculos
+        public static void TaxaMetabolicaChamada()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("    TAXA METABOLICA BASAL   ");
+            Console.WriteLine("============================");
+
+            switch (Cliente.Genero)
+            {
+                case 'H': TmbHomem(); break;
+                case 'M': TmbMulher(); break;
+            }
+        }
+        public static void PorcentGordChamada()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("     PORCENTAGEM GORDURA    ");
+            Console.WriteLine("============================");
+
+            switch (Cliente.Genero)
+            {
+                case 'H': PorcentHomem(); break;
+                case 'M': PorcentMulher(); break;
+            }
+        }
+        public static void DistMacroChamada()
+        {
+            Console.WriteLine("===============================");
+            Console.WriteLine(" DISTRIBUIÇÃO MACRO-NUTRIENTES ");
+            Console.WriteLine("===============================");
+
+            Console.WriteLine("1 - Hipertrofia || 2 - Obeso || 3 - Falso Magro || 4 - Manutenção");
+
+            Console.Write("Digite uma opção: ");
+            int optnDist = int.Parse(Console.ReadLine());
+
+            switch (optnDist)
+            {
+                case 1: DistHipertrofia(); break;
+                case 2: DistObeso(); break;
+                case 3: DistFalsoMagro(); break;
+                case 4: DistManutencao(); break;
             }
         }
 
