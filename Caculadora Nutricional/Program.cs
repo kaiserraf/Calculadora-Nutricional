@@ -81,7 +81,7 @@ namespace calcnutri
             Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
             TaxaMetabolicaChamada();
-            
+
             /*
             Console.WriteLine($"Id: {Cliente.Id}");
             Console.WriteLine($"Nome: {Cliente.Nome}");
@@ -146,6 +146,8 @@ namespace calcnutri
         // Calculo Taxa Metabolica Basal
         public static void TmbHomem()
         {
+            //Console.WriteLine("Homem");
+
             float tmbH = (float)(88.36 + 13.4 * Cliente.Peso + 4.8 * Cliente.Altura - 5.7 * Cliente.Idade);
             Cliente.TaxaBasal = tmbH;
 
@@ -157,14 +159,30 @@ namespace calcnutri
             Console.WriteLine($"Idade: {Cliente.Idade}");
             Console.WriteLine($"Altura: {Cliente.Altura}");
             Console.WriteLine($"Peso: {Cliente.Peso}");
-            Console.WriteLine($"TMB: {Cliente.TaxaBasal}");
-            Console.WriteLine($"Get: {Cliente.Get}");
+            Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
+            Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
             Console.WriteLine($"Faf: {Cliente.Faf}");
         }
 
         public static void TmbMulher()
         {
+            //Console.WriteLine("Mulher");
 
+            float tmbM = (float)(447.6 + 9.2 * Cliente.Peso + 3.1 * Cliente.Altura - 4.3 * Cliente.Idade);
+            Cliente.TaxaBasal = tmbM;
+
+            Console.Write("Digite o FAF do paciente: ");
+            Cliente.Faf = float.Parse(Console.ReadLine());
+
+            Cliente.Get = tmbM * Cliente.Faf;
+
+            Console.WriteLine($"Idade: {Cliente.Idade}");
+            Console.WriteLine($"Altura: {Cliente.Altura}");
+            Console.WriteLine($"Peso: {Cliente.Peso}");
+            Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
+            Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
+            Console.WriteLine($"Faf: {Cliente.Faf}");
+            
         }
 
         // %BF
