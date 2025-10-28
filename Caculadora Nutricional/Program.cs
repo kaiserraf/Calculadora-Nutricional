@@ -80,7 +80,7 @@ namespace calcnutri
             Console.Write("Genero:(H/M): "); // Genero >>>>>>
             Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
-            TaxaMetabolicaChamada();
+            MenuCalculos();
 
             /*
             Console.WriteLine($"Id: {Cliente.Id}");
@@ -102,7 +102,7 @@ namespace calcnutri
         }
 
         // menu de opções (Novo paciente | paciente antigo)
-        public static void MenuOpcoes(string nome, float peso, int idade, int altura, int id, char genero)
+        public static void MenuOpcoes()
         {
             Console.WriteLine("Bem vindo | escolha uma opção | 1 - novo paciente | 2 - paciente antigo");
             int optnMenu = int.Parse(Console.ReadLine());
@@ -199,6 +199,33 @@ namespace calcnutri
         public static void DistHipertrofia()
         {
 
+            /*
+             PTN | 2.0 g/kg             | 4Kcal/g
+             LIP | 1.0 g/kg             | 9Kcal/g
+             CHO | calorias restantes   | 4Kcal/g
+            */
+
+            // calculos de ptn e lip
+            Cliente.Ptn = Cliente.Peso * 2;
+            Cliente.Lip = Cliente.Peso * 1;
+
+            // calculo de kcal
+            float kcalPtn = Cliente.Ptn * 8;
+            float kcalLip = Cliente.Lip * 9;
+            float kcalCho = Cliente.Get - (kcalLip + kcalPtn);
+
+            // calculo cho pq é viadagem do caralho
+            Cliente.Cho = kcalCho / 4;
+            
+            Console.WriteLine($"PTN: {Cliente.Ptn}g");
+            Console.WriteLine($"LIP: {Cliente.Lip}g");
+            Console.WriteLine($"CHO: {Cliente.Cho}g");
+            Console.WriteLine($"Kcal PTN: {kcalPtn:F2}Kcal");
+            Console.WriteLine($"Kcal LIP: {kcalLip:F2}Kcal");
+            Console.WriteLine($"Kcal CHO: {kcalCho}Kcal");
+
+
+
         }
         public static void DistObeso()
         {
@@ -261,7 +288,7 @@ namespace calcnutri
         // metodo principal do código
         public static void Main(String[] args)
         {
-            Cadastro();
+            MenuOpcoes();
         }
     }
 }
