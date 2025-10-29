@@ -17,6 +17,7 @@ namespace calcnutri
     {
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
         public static Paciente Cliente = new Paciente();
+        public static List<Paciente> listaClientes = new List<Paciente>();
 
         // metodos para manipulação de arquivos
         public static void ArmazenarDados() // metodo coringa (sempre usado)
