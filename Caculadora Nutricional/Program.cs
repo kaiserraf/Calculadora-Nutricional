@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics;
 using System.Buffers.Text;
+using CalculadoraNutricional.Classes;
 namespace calcnutri
 {
     /// <summary>
@@ -17,17 +18,30 @@ namespace calcnutri
     {
         public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Paciente.csv";
         public static Paciente Cliente = new Paciente();
-        public static List<Paciente> listaClientes = new List<Paciente>();
+        public static List<string> linhas = new List<string>();
 
         // metodos para manipulação de arquivos
+
+        // cria arquivo se ele ainda não existir
+        public static void CriarArquivo()
+        {
+            if (File.Exists(arquivoSaida)) { return; }
+            else { File.Create(arquivoSaida); }
+        }
+
+        // armazena dados do paciente no arquivo
         public static void ArmazenarDados() // metodo coringa (sempre usado)
         {
             try
             {
 
-                var linhas = Cliente;
+                linhas.Add($"{Cliente.Id};{Cliente.Nome};{Cliente.Peso};{Cliente.Idade};{Cliente.Altura};{Cliente.Genero};{Cliente.Kcal};{Cliente.Ptn};{Cliente.Lip};{Cliente.Cho};{Cliente.Bf};{Cliente.Faf};{Cliente.Get};{Cliente.TaxaBasal}");
+                foreach (var linha in linhas)
+                {
 
-
+                }
+               // File.WriteAllLines($"{Cliente.Id};{Cliente.Nome};{Cliente.Peso};{Cliente.Idade};{Cliente.Altura};{Cliente.Genero};{Cliente.Kcal};{Cliente.Ptn};{Cliente.Lip};{Cliente.Cho};{Cliente.Bf};{Cliente.Faf};{Cliente.Get};{Cliente.TaxaBasal}");
+               
             }
             catch (Exception ex)
             {
@@ -46,12 +60,11 @@ namespace calcnutri
 
         }
 
-
         public static void DeletarDados()
         {
 
         }
-        
+
         public static void MostrarDados()
         {
             
@@ -84,6 +97,7 @@ namespace calcnutri
             MenuCalculos();
 
             /*
+            // usado para testes
             Console.WriteLine($"Id: {Cliente.Id}");
             Console.WriteLine($"Nome: {Cliente.Nome}");
             Console.WriteLine($"Peso: {Cliente.Peso}");
@@ -149,7 +163,7 @@ namespace calcnutri
         {
             //Console.WriteLine("Homem");
 
-            float tmbH = (float)(88.36 + 13.4 * Cliente.Peso + 4.8 * Cliente.Altura - 5.7 * Cliente.Idade);
+            float tmbH = (float)(88.36 + (13.4 * Cliente.Peso) + (4.8 * Cliente.Altura) - (5.7 * Cliente.Idade));
             Cliente.TaxaBasal = tmbH;
 
             Console.Write("Digite o FAF do paciente: ");
@@ -163,13 +177,15 @@ namespace calcnutri
             Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
             Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
             Console.WriteLine($"Faf: {Cliente.Faf}");
+
+            MenuCalculos();
         }
 
         public static void TmbMulher()
         {
             //Console.WriteLine("Mulher");
 
-            float tmbM = (float)(447.6 + 9.2 * Cliente.Peso + 3.1 * Cliente.Altura - 4.3 * Cliente.Idade);
+            float tmbM = (float)(447.6 + (9.2 * Cliente.Peso) + (3.1 * Cliente.Altura) - (4.3 * Cliente.Idade));
             Cliente.TaxaBasal = tmbM;
 
             Console.Write("Digite o FAF do paciente: ");
@@ -183,6 +199,8 @@ namespace calcnutri
             Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
             Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
             Console.WriteLine($"Faf: {Cliente.Faf}");
+
+            MenuCalculos();
             
         }
 
@@ -199,13 +217,6 @@ namespace calcnutri
         // distribuição de macro-nutrientes
         public static void DistHipertrofia()
         {
-
-            /*
-             PTN | 2.0 g/kg             | 4Kcal/g
-             LIP | 1.0 g/kg             | 9Kcal/g
-             CHO | calorias restantes   | 4Kcal/g
-            */
-
             // calculos de ptn e lip
             Cliente.Ptn = Cliente.Peso * 2;
             Cliente.Lip = Cliente.Peso * 1;
@@ -225,20 +236,55 @@ namespace calcnutri
             Console.WriteLine($"Kcal LIP: {kcalLip:F2}Kcal");
             Console.WriteLine($"Kcal CHO: {kcalCho}Kcal");
 
-
-
+            MenuCalculos();
         }
         public static void DistObeso()
         {
+            // calculos ptn e lip
+            Cliente.Ptn = Cliente.Peso * 2;
+            Cliente.Lip = (float)(Cliente.Peso * 0.8);
 
+            // calculos de kcal
+            float kcalPtn = Cliente.Ptn * 8;
+            float KcalLip = (float)(Cliente.Lip * 7.2);
+            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
+
+            // calculo cho pq é uma viadagem do caralho
+            Cliente.Cho = KcalCho / 4;
+
+            MenuCalculos();
         }
         public static void DistFalsoMagro()
         {
+            // calculos ptn e lip
+            Cliente.Ptn = (float)(Cliente.Peso * 2.2);
+            Cliente.Lip = Cliente.Peso * 1;
 
+            // calculos de kcal
+            float kcalPtn = (float)(Cliente.Ptn * 8.8);
+            float KcalLip = Cliente.Lip * 9;
+            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
+
+            // calculo cho pq é uma viadagem do caralho
+            Cliente.Cho = KcalCho / 4;
+
+            MenuCalculos();
         }
         public static void DistManutencao()
         {
+            // calculos ptn e lip
+            Cliente.Ptn = (float)(Cliente.Peso * 1.8);
+            Cliente.Lip = Cliente.Peso * 1;
 
+            // calculos de kcal
+            float kcalPtn = (float)(Cliente.Ptn * 7.2);
+            float KcalLip = Cliente.Lip * 9;
+            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
+
+            // calculo cho pq é uma viadagem do caralho
+            Cliente.Cho = KcalCho / 4;
+
+            MenuCalculos();
         }
 
         // funções de chamada para calculos
