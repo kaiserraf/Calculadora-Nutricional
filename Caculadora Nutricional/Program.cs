@@ -12,7 +12,7 @@ namespace calcnutri
     /// <summary>
     /// Descrição principal da classe ou método.
     /// Autor: Rafael Machado
-    /// Versão: 1.0-beta
+    /// Versão: 1.0-alpha
     /// </summary>
     class Program
     {
