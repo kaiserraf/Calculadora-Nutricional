@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Caculadora Nutricional")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52d0c57a03e822e2b9c9ba4c49ceb04a1de84411")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87e9128925a53db9f0fbbfca092ccd76599831af")]
 [assembly: System.Reflection.AssemblyProductAttribute("Caculadora Nutricional")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Caculadora Nutricional")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
