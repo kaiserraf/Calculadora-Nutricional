@@ -17,7 +17,7 @@ namespace CalculadoraNutricional.Classes
         }
 
         // armazena dados do paciente no arquivo
-        public static void ArmazenarDados() // metodo coringa (sempre usado)
+        public void ArmazenarDados() // metodo coringa (sempre usado)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace CalculadoraNutricional.Classes
                 linhas.Add($"{Cliente.Id};{Cliente.Nome};{Cliente.Peso};{Cliente.Idade};{Cliente.Altura};{Cliente.Genero};{Cliente.Kcal};{Cliente.Ptn};{Cliente.Lip};{Cliente.Cho};{Cliente.Bf};{Cliente.Faf};{Cliente.Get};{Cliente.TaxaBasal}");
                 foreach (var linha in linhas)
                 {
-
+                    Console.WriteLine(linha);
                 }
                 // File.WriteAllLines($"{Cliente.Id};{Cliente.Nome};{Cliente.Peso};{Cliente.Idade};{Cliente.Altura};{Cliente.Genero};{Cliente.Kcal};{Cliente.Ptn};{Cliente.Lip};{Cliente.Cho};{Cliente.Bf};{Cliente.Faf};{Cliente.Get};{Cliente.TaxaBasal}");
 

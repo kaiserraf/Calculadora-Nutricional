@@ -7,6 +7,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Buffers.Text;
 using CalculadoraNutricional.Classes;
+using CalculoImportante.Classes;
+
 namespace calcnutri
 {
     /// <summary>
@@ -16,14 +18,12 @@ namespace calcnutri
     /// </summary>
     class Program
     {
-        
-        public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Arquivos\Paciente.csv";
         public static Paciente Cliente = new Paciente();
-        public static ManipulacaoDados Dados = new ManipulacaoDados();
-        public static List<string> linhas = new List<string>();
-        
+        public static ManipulacaoDados Md = new ManipulacaoDados();
+        public static Calculo c = new Calculo();
+
         // cadastro de novo paciente
-        public static void Cadastro()
+        public void Cadastro()
         {
 
             Console.WriteLine("Cadastro");
@@ -46,29 +46,20 @@ namespace calcnutri
             Console.Write("Genero:(H/M): "); // Genero >>>>>>
             Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
+            Md.ArmazenarDados();
             MenuCalculos();
-
-            /*
-            // usado para testes
-            Console.WriteLine($"Id: {Cliente.Id}");
-            Console.WriteLine($"Nome: {Cliente.Nome}");
-            Console.WriteLine($"Peso: {Cliente.Peso}");
-            Console.WriteLine($"Idade: {Cliente.Idade}");
-            Console.WriteLine($"Altura: {Cliente.Altura}");
-            Console.WriteLine($"Genero: {Cliente.Genero}");
-            */
 
         }
 
         // paciente antigo
-        public static void PacienteAntigo()
+        public void PacienteAntigo()
         {
             Console.Write("Digite a ID do paciente: ");
             int idEscolha = int.Parse(Console.ReadLine());
         }
 
         // menu de opções (Novo paciente | paciente antigo)
-        public static void MenuOpcoes()
+        public void MenuOpcoes()
         {
             Console.WriteLine("Bem vindo | escolha uma opção | 1 - novo paciente | 2 - paciente antigo");
             int optnMenu = int.Parse(Console.ReadLine());
@@ -87,7 +78,7 @@ namespace calcnutri
         }
 
         // menu opções (Distribuição de Macro -  %BF - TMB)
-        public static void MenuCalculos()
+        public void MenuCalculos()
         {
             Console.WriteLine("============================");
             Console.WriteLine("   CALCULADORA NUTRICIONAL  ");
@@ -108,138 +99,9 @@ namespace calcnutri
 
         }
 
-
-        // Calculo Taxa Metabolica Basal
-        public static void TmbHomem()
-        {
-            //Console.WriteLine("Homem");
-
-            float tmbH = (float)(88.36 + (13.4 * Cliente.Peso) + (4.8 * Cliente.Altura) - (5.7 * Cliente.Idade));
-            Cliente.TaxaBasal = tmbH;
-
-            Console.Write("Digite o FAF do paciente: ");
-            Cliente.Faf = float.Parse(Console.ReadLine());
-
-            Cliente.Get = tmbH * Cliente.Faf;
-
-            Console.WriteLine($"Idade: {Cliente.Idade}");
-            Console.WriteLine($"Altura: {Cliente.Altura}");
-            Console.WriteLine($"Peso: {Cliente.Peso}");
-            Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
-            Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
-            Console.WriteLine($"Faf: {Cliente.Faf}");
-
-            MenuCalculos();
-        }
-
-        public static void TmbMulher()
-        {
-            //Console.WriteLine("Mulher");
-
-            float tmbM = (float)(447.6 + (9.2 * Cliente.Peso) + (3.1 * Cliente.Altura) - (4.3 * Cliente.Idade));
-            Cliente.TaxaBasal = tmbM;
-
-            Console.Write("Digite o FAF do paciente: ");
-            Cliente.Faf = float.Parse(Console.ReadLine());
-
-            Cliente.Get = tmbM * Cliente.Faf;
-
-            Console.WriteLine($"Idade: {Cliente.Idade}");
-            Console.WriteLine($"Altura: {Cliente.Altura}");
-            Console.WriteLine($"Peso: {Cliente.Peso}");
-            Console.WriteLine($"TMB: {Cliente.TaxaBasal:F2}Kcal");
-            Console.WriteLine($"Get: {Cliente.Get:F2}Kcal");
-            Console.WriteLine($"Faf: {Cliente.Faf}");
-
-            MenuCalculos();
-            
-        }
-
-        // %BF
-        public static void PorcentHomem()
-        {
-
-        }
-        public static void PorcentMulher()
-        {
-
-        }
-
-        // distribuição de macro-nutrientes
-        public static void DistHipertrofia()
-        {
-            // calculos de ptn e lip
-            Cliente.Ptn = Cliente.Peso * 2;
-            Cliente.Lip = Cliente.Peso * 1;
-
-            // calculo de kcal
-            float kcalPtn = Cliente.Ptn * 8;
-            float kcalLip = Cliente.Lip * 9;
-            float kcalCho = Cliente.Get - (kcalLip + kcalPtn);
-
-            // calculo cho pq é viadagem do caralho
-            Cliente.Cho = kcalCho / 4;
-            
-            Console.WriteLine($"PTN: {Cliente.Ptn}g");
-            Console.WriteLine($"LIP: {Cliente.Lip}g");
-            Console.WriteLine($"CHO: {Cliente.Cho}g");
-            Console.WriteLine($"Kcal PTN: {kcalPtn:F2}Kcal");
-            Console.WriteLine($"Kcal LIP: {kcalLip:F2}Kcal");
-            Console.WriteLine($"Kcal CHO: {kcalCho}Kcal");
-
-            MenuCalculos();
-        }
-        public static void DistObeso()
-        {
-            // calculos ptn e lip
-            Cliente.Ptn = Cliente.Peso * 2;
-            Cliente.Lip = (float)(Cliente.Peso * 0.8);
-
-            // calculos de kcal
-            float kcalPtn = Cliente.Ptn * 8;
-            float KcalLip = (float)(Cliente.Lip * 7.2);
-            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
-
-            // calculo cho pq é uma viadagem do caralho
-            Cliente.Cho = KcalCho / 4;
-
-            MenuCalculos();
-        }
-        public static void DistFalsoMagro()
-        {
-            // calculos ptn e lip
-            Cliente.Ptn = (float)(Cliente.Peso * 2.2);
-            Cliente.Lip = Cliente.Peso * 1;
-
-            // calculos de kcal
-            float kcalPtn = (float)(Cliente.Ptn * 8.8);
-            float KcalLip = Cliente.Lip * 9;
-            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
-
-            // calculo cho pq é uma viadagem do caralho
-            Cliente.Cho = KcalCho / 4;
-
-            MenuCalculos();
-        }
-        public static void DistManutencao()
-        {
-            // calculos ptn e lip
-            Cliente.Ptn = (float)(Cliente.Peso * 1.8);
-            Cliente.Lip = Cliente.Peso * 1;
-
-            // calculos de kcal
-            float kcalPtn = (float)(Cliente.Ptn * 7.2);
-            float KcalLip = Cliente.Lip * 9;
-            float KcalCho = Cliente.Get - (KcalLip + kcalPtn);
-
-            // calculo cho pq é uma viadagem do caralho
-            Cliente.Cho = KcalCho / 4;
-
-            MenuCalculos();
-        }
-
+        
         // funções de chamada para calculos
-        public static void TaxaMetabolicaChamada()
+        public void TaxaMetabolicaChamada()
         {
             Console.WriteLine("============================");
             Console.WriteLine("    TAXA METABOLICA BASAL   ");
@@ -247,11 +109,11 @@ namespace calcnutri
 
             switch (Cliente.Genero)
             {
-                case 'H': TmbHomem(); break;
-                case 'M': TmbMulher(); break;
+                case 'H': c.TmbHomem(); break;
+                case 'M': c.TmbMulher(); break;
             }
         }
-        public static void PorcentGordChamada()
+        public void PorcentGordChamada()
         {
             Console.WriteLine("============================");
             Console.WriteLine("     PORCENTAGEM GORDURA    ");
@@ -259,11 +121,11 @@ namespace calcnutri
 
             switch (Cliente.Genero)
             {
-                case 'H': PorcentHomem(); break;
-                case 'M': PorcentMulher(); break;
+                case 'H': c.PorcentHomem(); break;
+                case 'M': c.PorcentMulher(); break;
             }
         }
-        public static void DistMacroChamada()
+        public void DistMacroChamada()
         {
             Console.WriteLine("===============================");
             Console.WriteLine(" DISTRIBUIÇÃO MACRO-NUTRIENTES ");
@@ -276,15 +138,15 @@ namespace calcnutri
 
             switch (optnDist)
             {
-                case 1: DistHipertrofia(); break;
-                case 2: DistObeso(); break;
-                case 3: DistFalsoMagro(); break;
-                case 4: DistManutencao(); break;
+                case 1: c.DistHipertrofia(); break;
+                case 2: c.DistObeso(); break;
+                case 3: c.DistFalsoMagro(); break;
+                case 4: c.DistManutencao(); break;
             }
         }
 
         // metodo principal do código
-        public static void Main(String[] args)
+        public void Main(String[] args)
         {
             MenuOpcoes();
         }

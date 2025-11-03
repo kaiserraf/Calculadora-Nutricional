@@ -1,5 +1,4 @@
 using System.Reflection.PortableExecutable;
-
 class Paciente
 {
     public string? Nome { get; set; }
