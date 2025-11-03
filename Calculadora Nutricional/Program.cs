@@ -53,26 +53,31 @@ namespace calcnutri
         // paciente antigo
         public static void PacienteAntigo()
         {
-            Console.Write("Digite a ID do paciente: ");
-            int idEscolha = int.Parse(Console.ReadLine());
+            Console.WriteLine("============================");
+            Console.WriteLine("       PACIENTE ANTIGO      ");
+            Console.WriteLine("============================");
+
+            Console.WriteLine("1 - Alterar Dados || 2 - Deletar Dados || 3 - Mostrar Dados");
+
+            Console.Write("Digite uma opção: ");
         }
 
         // menu de opções (Novo paciente | paciente antigo)
         public static void MenuOpcoes()
         {
-            Console.WriteLine("Bem vindo | escolha uma opção | 1 - novo paciente | 2 - paciente antigo");
+            Console.WriteLine("============================");
+            Console.WriteLine("          BEM-VINDO         ");
+            Console.WriteLine("============================");
+
+            Console.WriteLine("1 - novo paciente || 2 - paciente antigo");
+
+            Console.Write("Digite uma opção: ");
             int optnMenu = int.Parse(Console.ReadLine());
 
             switch (optnMenu)
             {
-                case 1:
-                    Console.Clear();
-                    Cadastro();
-                    break;
-
-                case 2: // alterações paciente antigo
-                    Console.Clear();
-                    break;
+                case 1: Console.Clear(); Cadastro(); break;
+                case 2: Console.Clear(); PacienteAntigo(); break;
             }
         }
 

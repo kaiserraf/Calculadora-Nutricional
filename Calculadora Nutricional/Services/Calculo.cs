@@ -8,8 +8,6 @@ namespace CalculoImportante.Classes
         // Calculo Taxa Metabolica Basal
         public static void TmbHomem()
         {
-            //Console.WriteLine("Homem");
-
             float tmbH = (float)(88.36 + (13.4 * Program.Cliente.Peso) + (4.8 * Program.Cliente.Altura) - (5.7 * Program.Cliente.Idade));
             Program.Cliente.TaxaBasal = tmbH;
 
@@ -30,8 +28,6 @@ namespace CalculoImportante.Classes
 
         public static void TmbMulher()
         {
-            //Console.WriteLine("Mulher");
-
             float tmbM = (float)(447.6 + (9.2 * Program.Cliente.Peso) + (3.1 * Program.Cliente.Altura) - (4.3 * Program.Cliente.Idade));
             Program.Cliente.TaxaBasal = tmbM;
 
@@ -48,7 +44,6 @@ namespace CalculoImportante.Classes
             Console.WriteLine($"Faf: {Program.Cliente.Faf}");
 
             Program.MenuCalculos();
-
         }
 
         // %BF
