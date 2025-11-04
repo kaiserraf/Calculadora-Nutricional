@@ -152,7 +152,9 @@ namespace calcnutri
         // metodo principal do código
         public static void Main(String[] args)
         {
-            MenuOpcoes();
+            // MenuOpcoes();
+            string[] linhas = ManipulacaoDados.CarregarDados();
+            ManipulacaoDados.MostrarDados(linhas);
         }
     }
 }

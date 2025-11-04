@@ -3,7 +3,7 @@ namespace CalculadoraNutricional.Classes
 {
     class ManipulacaoDados
     {
-        public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\data\Paciente.csv";
+        public static String arquivoSaida = @"C:\Users\Rafae\OneDrive\Área de Trabalho\C#\Calculadora Nutricional\Calculadora Nutricional\data\Paciente.csv";
         public static List<string> linhas = new List<string>();
 
         // metodos para manipulação de arquivos
@@ -26,9 +26,10 @@ namespace CalculadoraNutricional.Classes
 
         // carrega dados
 
-        public static void CarregarDados() // metodo coringa (sempre usado)
+        public static string[] CarregarDados() // metodo coringa (sempre usado)
         {
-
+            string[] linhas = File.ReadAllLines(arquivoSaida);
+            return linhas;
         }
 
         // armazena dados do paciente no arquivo
@@ -62,10 +63,25 @@ namespace CalculadoraNutricional.Classes
             
         }
 
-        public static void MostrarDados()
+        public static void MostrarDados(string[] linhas)
         {
-            SelectId();
-            
+            CarregarDados();
+
+            try
+            {
+                foreach(var linha in linhas)
+                {
+                    string[] colunas = linha.Split(';');
+                    foreach (var coluna in colunas)
+                    {
+                        Console.WriteLine($" {coluna} |");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
