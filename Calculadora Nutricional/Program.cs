@@ -45,7 +45,6 @@ namespace calcnutri
             Console.Write("Genero:(H/M): "); // Genero >>>>>>
             Cliente.Genero = char.Parse(Console.ReadLine().ToUpper()); // transforma tudo em caixa alta
 
-            Md.ArmazenarDados();
             MenuCalculos();
 
         }
@@ -152,9 +151,7 @@ namespace calcnutri
         // metodo principal do código
         public static void Main(String[] args)
         {
-            // MenuOpcoes();
-            string[] linhas = ManipulacaoDados.CarregarDados();
-            ManipulacaoDados.MostrarDados(linhas);
+            MenuOpcoes();
         }
     }
 }

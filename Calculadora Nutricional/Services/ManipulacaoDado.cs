@@ -1,4 +1,5 @@
 using calcnutri;
+using System.IO; // necessario para StreamWriter e Path
 namespace CalculadoraNutricional.Classes
 {
     class ManipulacaoDados
@@ -34,20 +35,35 @@ namespace CalculadoraNutricional.Classes
 
         // armazena dados do paciente no arquivo
 
-        public void ArmazenarDados() // metodo coringa (sempre usado)
+        public static void ArmazenarDados(Paciente pacienteParaSalvar) // metodo coringa (sempre usado)
         {
-            CarregarDados();
+            CriarArquivo();
 
             try
             {
+                string formatacao = $"{pacienteParaSalvar.Id};" +
+                                    $"{pacienteParaSalvar.Nome};" +
+                                    $"{pacienteParaSalvar.Peso};" +
+                                    $"{pacienteParaSalvar.Idade};" +
+                                    $"{pacienteParaSalvar.Altura};" +
+                                    $"{pacienteParaSalvar.Genero};" +
+                                    $"{pacienteParaSalvar.Kcal};" +
+                                    $"{pacienteParaSalvar.Ptn};" +
+                                    $"{pacienteParaSalvar.Lip};" +
+                                    $"{pacienteParaSalvar.Cho};" +
+                                    $"{pacienteParaSalvar.Bf};" +
+                                    $"{pacienteParaSalvar.Faf};" +
+                                    $"{pacienteParaSalvar.Get};" +
+                                    $"{pacienteParaSalvar.TaxaBasal}";
 
-                Console.WriteLine(Program.Cliente.Nome);
-                // File.WriteAllLines($"{Cliente.Id};{Cliente.Nome};{Cliente.Peso};{Cliente.Idade};{Cliente.Altura};{Cliente.Genero};{Cliente.Kcal};{Cliente.Ptn};{Cliente.Lip};{Cliente.Cho};{Cliente.Bf};{Cliente.Faf};{Cliente.Get};{Cliente.TaxaBasal}");
-
+                using(StreamWriter sw = new StreamWriter(arquivoSaida, true))
+                {
+                    sw.WriteLine(formatacao); // escreve nova linha no fim do arquivo
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine($"Erro ao armazenar dados: {ex.Message}");
             }
 
         }
@@ -63,13 +79,13 @@ namespace CalculadoraNutricional.Classes
             
         }
 
-        public static void MostrarDados(string[] linhas)
+        public static void MostrarDados1(string[] linhas)
         {
             CarregarDados();
 
             try
             {
-                foreach(var linha in linhas)
+                foreach (var linha in linhas)
                 {
                     string[] colunas = linha.Split(';');
                     foreach (var coluna in colunas)
@@ -82,6 +98,12 @@ namespace CalculadoraNutricional.Classes
             {
                 Console.WriteLine(ex);
             }
+        }
+        
+        public static void MostrarDados2()
+        {
+            string[] linhas = CarregarDados();
+            MostrarDados1(linhas);
         }
     }
 }
